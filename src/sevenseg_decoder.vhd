@@ -38,7 +38,14 @@ end sevenseg_decoder;
 
 architecture Behavioral of sevenseg_decoder is
 
+
 begin
+with i_Hex select
+    o_seg_n <= "0001" when "00",
+        "0010" when "01",
+        "0100" when "10",
+        "1000" when "11",
+        "0000" when others;
 
 
 end Behavioral;
