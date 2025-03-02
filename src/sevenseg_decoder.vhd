@@ -37,15 +37,33 @@ entity sevenseg_decoder is
 end sevenseg_decoder;
 
 architecture Behavioral of sevenseg_decoder is
-
+    signal w_sel: std_logic_vector (3 downto 0);
 
 begin
-with i_Hex select
-    o_seg_n <= "0001" when "00",
-        "0010" when "01",
-        "0100" when "10",
-        "1000" when "11",
-        "0000" when others;
+
+w_sel(0) <= i_Hex(0);
+w_sel(1) <= i_Hex(1);
+w_sel(2) <= i_Hex(2);
+w_sel(3) <= i_Hex(3);
+
+with w_sel select
+    o_seg_n <= "0000001" when "0000",
+        "1001111" when "0001",
+        "0010010" when "0010",
+        "0000110" when "0011",
+        "1001100" when "0100",
+        "0100100" when "0101",
+        "0100000" when "0110",
+        "0001111" when "0111",
+        "0000000" when "1000",
+        "0001100" when "1001",
+        "0001000" when "1010",
+        "1100000" when "1011",
+        "1110010" when "1100",
+        "1000010" when "1101",
+        "0110000" when "1110",
+        "0111000" when "1111",
+        "0000000" when others;
 
 
 end Behavioral;
